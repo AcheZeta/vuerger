@@ -48,8 +48,6 @@ export default {
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
                 });
-            test.firestore.js
-
         },
     },
 };
