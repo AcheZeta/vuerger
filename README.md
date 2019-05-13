@@ -1,4 +1,4 @@
-# vuergerq
+# Burger Queen
 
 > A Vue.js project
 

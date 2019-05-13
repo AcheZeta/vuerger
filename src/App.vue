@@ -1,65 +1,70 @@
 <template>
-  <div id="app">
-    <main>
-      <img src="./assets/burgerQueenLogo.png" alt="Vue.js PWA">
-       <br>
-      <router-view></router-view>
-      <input v-model="message" placeholder="¿Cómo te llamas?">
-      <button @click="add">¿Cuántas hamburguesas quieres?</button>
-      <p>Quieres {{ counter }} hamburguesas.</p>
-    </main>
-  </div>
+    <div id="app">
+        <main>
+            <img src="./assets/burgerQueenLogo.png" alt="Vue.js PWA">
+            <br>
+            <router-view></router-view>
+            <input v-model="name" placeholder="¿Cómo te llamas?">
+            <button @click="add">¿Cuántas hamburguesas quieres?</button>
+            <p> Hola {{ name }}, quieres {{ counter }} hamburguesas.</p>
+            <button @click="saveData">Confirmar</button>
+    
+        </main>
+    </div>
 </template>
 
 <script>
+import { fb, db } from '../firebase'
 export default {
-  name: 'app',
-  data() {
-    return {
-      counter: 0,
-    };
-  },
-  methods: {
-    add() {
-      this.counter += 1;
+    name: 'app',
+    data() {
+        return {
+            counter: 0,
+            name: null,
+        };
     },
-  },
+    methods: {
+        add() {
+            this.counter += 1;
+        },
+        saveData() {},
+    },
 };
 </script>
 
 <style>
 body {
-  margin: 0;
+    margin: 0;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 }
 
 main {
-  text-align: center;
-  margin-top: 40px;
+    text-align: center;
+    margin-top: 40px;
 }
 
 header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
+    margin: 0;
+    height: 56px;
+    padding: 0 16px 0 24px;
+    background-color: #35495E;
+    color: #ffffff;
 }
 
 header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
+    display: block;
+    position: relative;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: .02em;
+    font-weight: 400;
+    box-sizing: border-box;
+    padding-top: 16px;
 }
 </style>
