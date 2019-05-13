@@ -4,11 +4,21 @@
             <img src="./assets/burgerQueenLogo.png" alt="Vue.js PWA">
             <br>
             <router-view></router-view>
-            <input v-model="name" placeholder="¿Cómo te llamas?">
-            <button @click="add">¿Cuántas hamburguesas quieres?</button>
-            <p> Hola {{ name }}, quieres {{ counter }} hamburguesas.</p>
-            <button @click="saveData">Confirmar</button>
-    
+            <div class="name-counter">
+                <div class="form-group">
+                    <input type="text" placeholder="¿Cómo te llamas?" v-model="namecounter.name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Precio" v-model="namecounter.price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button @click="add">¿Cuántas hamburguesas quieres?</button>
+                </div>
+                <div class="form-group">
+                    <button @click="saveData" class="btn btn-primary">Confirmar</button>
+                </div>
+                <p> Hola {{ namecounter.name }}, quieres {{ namecounter.counter }} hamburguesas de ${{ namecounter.price }}.</p>
+            </div>
         </main>
     </div>
 </template>
@@ -19,15 +29,28 @@ export default {
     name: 'app',
     data() {
         return {
-            counter: 0,
-            name: null,
+            namecounter: {
+                counter: 0,
+                name: null,
+                price: null,
+            }
         };
     },
     methods: {
         add() {
-            this.counter += 1;
+            this.namecounter.counter += 1;
         },
-        saveData() {},
+        saveData() {
+            db.collection("namecounter").add(this.namecounter)
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+            test.firestore.js
+
+        },
     },
 };
 </script>
